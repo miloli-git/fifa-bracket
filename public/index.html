@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Tournament Bracket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FIFA Tournament Manager</h1>
+            <p class="subtitle">Organize your FIFA tournaments like a pro</p>
+        </header>
+
+        <div id="main-menu" class="section">
+            <div class="menu-options">
+                <button class="btn btn-primary btn-large" onclick="showCreateTournament()">
+                    Create New Tournament
+                </button>
+                <button class="btn btn-secondary btn-large" onclick="showTournamentList()">
+                    View Tournaments
+                </button>
+            </div>
+        </div>
+
+        <!-- Create Tournament Form -->
+        <div id="create-tournament" class="section" style="display: none;">
+            <h2>Create Tournament</h2>
+            <form id="tournament-form">
+                <div class="form-group">
+                    <label for="tournament-name">Tournament Name</label>
+                    <input type="text" id="tournament-name" required placeholder="e.g., Friday Night FIFA">
+                </div>
+
+                <div class="form-group">
+                    <label for="game-mode">Game Mode</label>
+                    <select id="game-mode" required>
+                        <option value="1v1">1v1</option>
+                        <option value="2v2">2v2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tournament-format">Format</label>
+                    <select id="tournament-format" required>
+                        <option value="single-elimination">Single Elimination</option>
+                        <option value="group-stage">Group Stage + Knockout</option>
+                    </select>
+                    <small>Group stage requires at least 8 players</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="player-count">Number of Players/Teams</label>
+                    <input type="number" id="player-count" min="2" max="32" value="8" required>
+                </div>
+
+                <div id="players-input" class="form-group">
+                    <label>Players/Teams</label>
+                    <div id="player-list"></div>
+                    <button type="button" class="btn btn-small" onclick="generatePlayerInputs()">Generate Inputs</button>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="use-seeding">
+                        Use Seeding (manually order players by skill)
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Tournament</button>
+                    <button type="button" class="btn btn-secondary" onclick="showMainMenu()">Cancel</button>
+                </div>
+            </form>
+
+            <div id="time-estimate" class="info-box" style="display: none;">
+                <h3>Time Estimate</h3>
+                <p id="estimate-text"></p>
+            </div>
+        </div>
+
+        <!-- Tournament List -->
+        <div id="tournament-list" class="section" style="display: none;">
+            <h2>Your Tournaments</h2>
+            <div id="tournaments-container"></div>
+            <button class="btn btn-secondary" onclick="showMainMenu()">Back</button>
+        </div>
+
+        <!-- Tournament View -->
+        <div id="tournament-view" class="section" style="display: none;">
+            <div class="tournament-header">
+                <h2 id="tournament-title"></h2>
+                <div class="tournament-info">
+                    <span id="tournament-format-display"></span>
+                    <span id="tournament-mode-display"></span>
+                    <span id="tournament-player-count"></span>
+                </div>
+            </div>
+
+            <div class="tournament-stats">
+                <div class="stat-box">
+                    <div class="stat-label">Total Matches</div>
+                    <div class="stat-value" id="total-matches">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Estimated Time</div>
+                    <div class="stat-value" id="estimated-time">0h 0m</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Status</div>
+                    <div class="stat-value" id="tournament-status">Active</div>
+                </div>
+            </div>
+
+            <!-- Group Stage View -->
+            <div id="groups-view" style="display: none;">
+                <h3>Group Stage</h3>
+                <div id="groups-container"></div>
+            </div>
+
+            <!-- Bracket View -->
+            <div id="bracket-view" style="display: none;">
+                <h3>Bracket</h3>
+                <div id="bracket-container"></div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="showTournamentList()">Back to List</button>
+                <button class="btn btn-danger" onclick="deleteTournament()">Delete Tournament</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Score Modal -->
+    <div id="score-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Enter Match Score</h3>
+            <div id="score-form">
+                <div class="score-input-group">
+                    <div class="team-score">
+                        <label id="team1-label">Team 1</label>
+                        <input type="number" id="score1" min="0" value="0">
+                    </div>
+                    <div class="score-separator">-</div>
+                    <div class="team-score">
+                        <label id="team2-label">Team 2</label>
+                        <input type="number" id="score2" min="0" value="0">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="submitScore()">Submit Score</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
