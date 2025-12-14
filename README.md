@@ -154,6 +154,43 @@ npm install --save-dev nodemon
 npm run dev
 ```
 
+## Deployment
+
+Deploy your tournament app to the web for free! Here are the easiest options:
+
+### Quick Start (Recommended)
+
+**Option 1: Render** (Easiest - Free forever)
+1. Sign up at https://render.com with GitHub
+2. Click "New +" → "Web Service"
+3. Select your repository
+4. Click "Create Web Service"
+5. Done! Your app will be live in 2-3 minutes
+
+**Option 2: Railway** (Fast & Reliable)
+1. Sign up at https://railway.app with GitHub
+2. "New Project" → "Deploy from GitHub repo"
+3. Select your repository
+4. Automatic deployment starts
+5. Get your URL from Settings → Domains
+
+**Option 3: Vercel** (Fastest deployment)
+1. Sign up at https://vercel.com with GitHub
+2. "Add New..." → "Project"
+3. Import your repository
+4. Click "Deploy"
+5. Live in under 1 minute!
+
+### Detailed Instructions
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for:
+- Step-by-step guides for each platform
+- Adding custom domains
+- Setting up databases (MongoDB, PostgreSQL)
+- Self-hosting options
+- Environment variables
+- Cost comparisons
+
 ## Future Enhancement Ideas
 
 Here are some ideas for expanding the app:
