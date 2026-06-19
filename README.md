@@ -1,5 +1,9 @@
 # FIFA Tournament Bracket Manager
 
+> Archive. Built this to run a same-day, in-person FIFA tournament with mates -
+> brackets, group stage, live score entry, the lot. On the day we just used a
+> whiteboard, so it never really got a run. Leaving it up for posterity.
+
 A full-stack web application to organize and manage FIFA tournaments with your friends. Features bracket visualization, group stage support, score tracking, and time estimation.
 
 ## Features
